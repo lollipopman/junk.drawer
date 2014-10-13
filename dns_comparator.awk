@@ -1,8 +1,8 @@
+#!/usr/bin/gawk
 {
   if (FNR == 1) {
     print "### Processing: "FILENAME
   }
-  authoritive_nameserver = ARGV["authoritive_name_server"]
   if ($1 == "$ORIGIN") {
     origin = $2
   }
@@ -26,7 +26,7 @@
       sub(/^[[:blank:]]*([[:graph:]]+[[:blank:]]+){4}/, "", record_value)
       break
     }
-    cmd = "dig @"authoritive_nameserver" +short "record" "record_type
+    cmd = "dig @"authoritative_nameserver" +short "record" "record_type
     while (cmd | getline dig_response_line) {
       dig_response[dig_response_line] = "found"
     }
